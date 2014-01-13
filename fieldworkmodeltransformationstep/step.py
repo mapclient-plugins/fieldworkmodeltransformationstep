@@ -18,7 +18,7 @@ class fieldworkmodeltransformationStep(WorkflowStepMountPoint):
 
     def __init__(self, location):
         super(fieldworkmodeltransformationStep, self).__init__('Fieldwork Model Transformation', location)
-        self._configured = False # A step cannot be executed until it has been configured.
+        self._configured = True # A step cannot be executed until it has been configured.
         self._category = 'Fieldwork'
         # Add any other initialisation code here:
         # Ports:
