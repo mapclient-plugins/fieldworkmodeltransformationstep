@@ -44,7 +44,7 @@ class fieldworkmodeltransformationStep(WorkflowStepMountPoint):
         # Put your execute step code here before calling the '_doneExecution' method.
         GFTransforms = {'affine': self.GF.transformAffine,
                         'rigid':  self.GF.transformRigidRotateAboutCoM,
-                        'rigidScale': self.GF.transformRigidScale3DAboutCoM,
+                        'rigidScale': self.GF.transformRigidScaleAboutCoM,
                         }
         try:
             transformFunction = GFTransforms[self.T.transformType]
