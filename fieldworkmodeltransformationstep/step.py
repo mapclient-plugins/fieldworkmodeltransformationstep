@@ -17,7 +17,7 @@ class fieldworkmodeltransformationStep(WorkflowStepMountPoint):
     '''
 
     def __init__(self, location):
-        super(fieldworkmodeltransformationStep, self).__init__('fieldworkmodeltransformation', location)
+        super(fieldworkmodeltransformationStep, self).__init__('Fieldwork Model Transformation', location)
         self._configured = False # A step cannot be executed until it has been configured.
         self._category = 'Fieldwork'
         # Add any other initialisation code here:
@@ -50,7 +50,7 @@ class fieldworkmodeltransformationStep(WorkflowStepMountPoint):
             transformFunction = GFTransforms[self.T.transformType]
         except KeyError:
             raise RuntimeError, 'unknown transform type: '+self.T.transformType
-            
+
         transformFunction(self.T.T)
         self._doneExecution()
 
