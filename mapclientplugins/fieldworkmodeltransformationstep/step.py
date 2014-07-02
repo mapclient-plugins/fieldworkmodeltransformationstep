@@ -3,21 +3,16 @@
 MAP Client Plugin Step
 '''
 
-from PySide import QtGui
-
 from mapclient.mountpoints.workflowstep import WorkflowStepMountPoint
 
-from mappluginutils.datatypes import transformations
-
-
-class fieldworkmodeltransformationStep(WorkflowStepMountPoint):
+class FieldworkModelTransformationStep(WorkflowStepMountPoint):
     '''
-    Skeleton step which is intended to be a helpful starting point
-    for new steps.
+    Step for applying a rigid-body or scaling transform to
+    a fieldwork model.
     '''
 
     def __init__(self, location):
-        super(fieldworkmodeltransformationStep, self).__init__('Fieldwork Model Transformation', location)
+        super(FieldworkModelTransformationStep, self).__init__('Fieldwork Model Transformation', location)
         self._configured = True # A step cannot be executed until it has been configured.
         self._category = 'Fieldwork'
         # Add any other initialisation code here:
