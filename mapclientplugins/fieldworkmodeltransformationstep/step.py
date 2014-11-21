@@ -22,7 +22,7 @@ class FieldworkModelTransformationStep(WorkflowStepMountPoint):
                       'ju#fieldworkmodel'))
         self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#uses',
-                      'ju#geometrictransform'))
+                      'http://physiomeproject.org/workflow/1.0/rdf-schema#geometrictransform'))
         self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#provides',
                       'ju#fieldworkmodel'))
