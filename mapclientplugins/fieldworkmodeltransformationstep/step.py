@@ -44,7 +44,7 @@ class FieldworkModelTransformationStep(WorkflowStepMountPoint):
         try:
             transformFunction = GFTransforms[self.T.transformType]
         except KeyError:
-            raise RuntimeError, 'unknown transform type: '+self.T.transformType
+            raise RuntimeError('unknown transform type: '+self.T.transformType)
 
         transformFunction(self.T.T)
         self._doneExecution()
