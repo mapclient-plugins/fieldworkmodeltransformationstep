@@ -37,16 +37,24 @@ class FieldworkModelTransformationStep(WorkflowStepMountPoint):
         may be connected up to a button in a widget for example.
         '''
         # Put your execute step code here before calling the '_doneExecution' method.
+
+        print 'Executing transform'
         GFTransforms = {'affine': self.GF.transformAffine,
-                        'rigid':  self.GF.transformRigidRotateAboutCoM,
-                        'rigidscale': self.GF.transformRigidScaleRotateAboutCoM,
+                        'rigid_about_point':  self.GF.transformRigidRotateAboutP,
+                        'rigidscale_about_point': self.GF.transformRigidScaleRotateAboutP,
                         }
         try:
             transformFunction = GFTransforms[self.T.transformType]
         except KeyError:
             raise RuntimeError('unknown transform type: '+self.T.transformType)
 
-        transformFunction(self.T.T)
+        print 'transform type:', self.T.transformType
+        
+        if self.T.transformType=='affine':
+            transformFunction(self.T.T)
+        else:
+            transformFunction(self.T.getT(), self.T.getP())
+            print 'DING', self.T.getP
         self._doneExecution()
 
     def setPortData(self, index, dataIn):
