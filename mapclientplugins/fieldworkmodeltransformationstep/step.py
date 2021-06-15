@@ -1,9 +1,9 @@
-
 '''
 MAP Client Plugin Step
 '''
 
 from mapclient.mountpoints.workflowstep import WorkflowStepMountPoint
+
 
 class FieldworkModelTransformationStep(WorkflowStepMountPoint):
     '''
@@ -13,7 +13,7 @@ class FieldworkModelTransformationStep(WorkflowStepMountPoint):
 
     def __init__(self, location):
         super(FieldworkModelTransformationStep, self).__init__('Fieldwork Model Transformation', location)
-        self._configured = True # A step cannot be executed until it has been configured.
+        self._configured = True  # A step cannot be executed until it has been configured.
         self._category = 'Fieldwork'
         # Add any other initialisation code here:
         # Ports:
@@ -38,23 +38,19 @@ class FieldworkModelTransformationStep(WorkflowStepMountPoint):
         '''
         # Put your execute step code here before calling the '_doneExecution' method.
 
-        print 'Executing transform'
         GFTransforms = {'affine': self.GF.transformAffine,
-                        'rigid_about_point':  self.GF.transformRigidRotateAboutP,
+                        'rigid_about_point': self.GF.transformRigidRotateAboutP,
                         'rigidscale_about_point': self.GF.transformRigidScaleRotateAboutP,
                         }
         try:
             transformFunction = GFTransforms[self.T.transformType]
         except KeyError:
-            raise RuntimeError('unknown transform type: '+self.T.transformType)
+            raise RuntimeError('unknown transform type: ' + self.T.transformType)
 
-        print 'transform type:', self.T.transformType
-        
-        if self.T.transformType=='affine':
+        if self.T.transformType == 'affine':
             transformFunction(self.T.T)
         else:
             transformFunction(self.T.getT(), self.T.getP())
-            print 'DING', self.T.getP
         self._doneExecution()
 
     def setPortData(self, index, dataIn):
@@ -64,9 +60,9 @@ class FieldworkModelTransformationStep(WorkflowStepMountPoint):
         uses port for this step then the index can be ignored.
         '''
         if index == 0:
-            self.GF = dataIn # ju#fieldworkmodel
+            self.GF = dataIn  # ju#fieldworkmodel
         else:
-            self.T = dataIn # ju#geometrictransform
+            self.T = dataIn  # ju#geometrictransform
 
     def getPortData(self, index):
         '''
@@ -74,7 +70,7 @@ class FieldworkModelTransformationStep(WorkflowStepMountPoint):
         The index is the index of the port in the port list.  If there is only one
         provides port for this step then the index can be ignored.
         '''
-        return self.GF # ju#fieldworkmodel
+        return self.GF  # ju#fieldworkmodel
 
     def configure(self):
         '''
@@ -90,13 +86,13 @@ class FieldworkModelTransformationStep(WorkflowStepMountPoint):
         '''
         The identifier is a string that must be unique within a workflow.
         '''
-        return 'fieldworkmodeltransformation' # TODO: The string must be replaced with the step's unique identifier
+        return 'fieldworkmodeltransformation'  # TODO: The string must be replaced with the step's unique identifier
 
     def setIdentifier(self, identifier):
         '''
         The framework will set the identifier for this step when it is loaded.
         '''
-        pass # TODO: Must actually set the step's identifier here
+        pass  # TODO: Must actually set the step's identifier here
 
     def serialize(self):
         '''
@@ -111,4 +107,3 @@ class FieldworkModelTransformationStep(WorkflowStepMountPoint):
         given by mapclient
         '''
         pass
-
