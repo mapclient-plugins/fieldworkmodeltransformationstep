@@ -15,6 +15,7 @@ class FieldworkModelTransformationStep(WorkflowStepMountPoint):
         super(FieldworkModelTransformationStep, self).__init__('Fieldwork Model Transformation', location)
         self._configured = True  # A step cannot be executed until it has been configured.
         self._category = 'Fieldwork'
+        self._identifier = ''
         # Add any other initialisation code here:
         # Ports:
         self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
@@ -86,13 +87,13 @@ class FieldworkModelTransformationStep(WorkflowStepMountPoint):
         """
         The identifier is a string that must be unique within a workflow.
         """
-        return 'fieldworkmodeltransformation'  # TODO: The string must be replaced with the step's unique identifier
+        return self._identifier
 
     def setIdentifier(self, identifier):
         """
         The framework will set the identifier for this step when it is loaded.
         """
-        pass  # TODO: Must actually set the step's identifier here
+        self._identifier = identifier
 
     def serialize(self):
         """
